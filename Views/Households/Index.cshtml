@@ -1,0 +1,89 @@
+﻿@model IEnumerable<FoodPantry2k23.Models.Household>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateProvince)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsentFormOnFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerbalConsentGiven)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsentFormSigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerbalConsentGivenOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminNotes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateProvince)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsentFormOnFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerbalConsentGiven)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsentFormSigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerbalConsentGivenOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminNotes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HouseHoldID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HouseHoldID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HouseHoldID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,78 @@
+﻿@model FoodPantry2k23.Models.Household
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Household</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StateProvince)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StateProvince)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ConsentFormOnFile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ConsentFormOnFile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VerbalConsentGiven)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VerbalConsentGiven)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ConsentFormSigned)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ConsentFormSigned)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VerbalConsentGivenOn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VerbalConsentGivenOn)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdminNotes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdminNotes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.HouseHoldID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

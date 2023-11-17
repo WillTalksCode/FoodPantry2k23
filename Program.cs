@@ -33,7 +33,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "Person",
+    name: "People",
     pattern: "{controller=People}/{action=Index}");
+
+app.MapControllerRoute(
+    name: "Households",
+    pattern: "{controller=Households}/{action=Index}");
 
 app.Run();
