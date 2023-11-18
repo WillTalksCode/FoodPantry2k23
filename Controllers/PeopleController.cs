@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FoodPantry2k23;
 using FoodPantry2k23.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodPantry2k23.Controllers
 {
@@ -20,6 +21,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: People
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.People != null ? 
@@ -28,6 +30,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: People/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.People == null)
@@ -46,6 +49,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: People/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +59,7 @@ namespace FoodPantry2k23.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,FirstName,MiddleName,LastName,DOB,Gender,HouseHoldID,Email,Phone")] Person person)
         {
@@ -68,6 +73,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: People/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.People == null)
@@ -87,6 +93,7 @@ namespace FoodPantry2k23.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,FirstName,MiddleName,LastName,DOB,Gender,HouseHoldID,Email,Phone")] Person person)
         {
@@ -119,6 +126,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: People/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.People == null)
@@ -138,6 +146,7 @@ namespace FoodPantry2k23.Controllers
 
         // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -155,6 +164,7 @@ namespace FoodPantry2k23.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool PersonExists(int id)
         {
           return (_context.People?.Any(e => e.id == id)).GetValueOrDefault();

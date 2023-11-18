@@ -7,19 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FoodPantry2k23;
 using FoodPantry2k23.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodPantry2k23.Controllers
 {
     public class HouseholdsController : Controller
     {
         private readonly FPContext _context;
-
         public HouseholdsController(FPContext context)
         {
             _context = context;
         }
 
         // GET: Households
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Households != null ? 
@@ -28,6 +29,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: Households/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Households == null)
@@ -46,6 +48,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: Households/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +58,7 @@ namespace FoodPantry2k23.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HouseHoldID,Address1,Address2,City,StateProvince,ZipCode,ConsentFormOnFile,VerbalConsentGiven,ConsentFormSigned,VerbalConsentGivenOn,AdminNotes")] Household household)
         {
@@ -68,6 +72,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: Households/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Households == null)
@@ -87,6 +92,7 @@ namespace FoodPantry2k23.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("HouseHoldID,Address1,Address2,City,StateProvince,ZipCode,ConsentFormOnFile,VerbalConsentGiven,ConsentFormSigned,VerbalConsentGivenOn,AdminNotes")] Household household)
         {
@@ -119,6 +125,7 @@ namespace FoodPantry2k23.Controllers
         }
 
         // GET: Households/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Households == null)
@@ -138,6 +145,7 @@ namespace FoodPantry2k23.Controllers
 
         // POST: Households/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -155,6 +163,7 @@ namespace FoodPantry2k23.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool HouseholdExists(int id)
         {
           return (_context.Households?.Any(e => e.HouseHoldID == id)).GetValueOrDefault();
