@@ -281,3 +281,13 @@ G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\ru\Micr
 G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+G:\screw\Documents\GitHub\FoodPantry2k23\FoodPantry2k23\obj\Debug\net7.0\FoodPantry2k23.MvcApplicationPartsAssemblyInfo.cs
