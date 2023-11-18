@@ -54,6 +54,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 //Identity
 builder.Services.AddRazorPages();
+
+
+
 var app = builder.Build();
 
 //
@@ -82,10 +85,10 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "People",
-    pattern: "{controller=People}/{action=Index}");
+    pattern: "{controller=People}/{action=Index}").RequireAuthorization();
 
 app.MapControllerRoute(
     name: "Households",
-    pattern: "{controller=Households}/{action=Index}");
+    pattern: "{controller=Households}/{action=Index}").RequireAuthorization();
 app.MapRazorPages();
 app.Run();
