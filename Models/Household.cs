@@ -13,6 +13,7 @@
         public DateTime? ConsentFormSigned { get; set; }
         public DateTime? VerbalConsentGivenOn { get; set; }
         public string? AdminNotes { get; set; }
+        public List<Person> HouseHoldMembers { get; set; }
 
     }
 }

@@ -72,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG91c2Vob2xkc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Households/_HouseHoldMembers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG91c2Vob2xkc1xfSG91c2VIb2xkTWVtYmVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/People/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVvcGxlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +94,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/People/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVvcGxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Referrals/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZXJyYWxzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Referrals/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZXJyYWxzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Referrals/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZXJyYWxzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Referrals/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZXJyYWxzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Referrals/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZXJyYWxzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Shared/Error.cshtml]

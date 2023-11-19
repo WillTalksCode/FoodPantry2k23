@@ -14,47 +14,49 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="HouseHoldID" />
             <div class="form-group">
-                <label asp-for="Address1" class="control-label"></label>
+                <label asp-for="Address1" class="control-label">Address Line 1</label>
                 <input asp-for="Address1" class="form-control" />
                 <span asp-validation-for="Address1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address2" class="control-label"></label>
+                <label asp-for="Address2" class="control-label">Address Line 2:</label>
                 <input asp-for="Address2" class="form-control" />
                 <span asp-validation-for="Address2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
+                <label asp-for="City" class="control-label">City:</label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StateProvince" class="control-label"></label>
+                <label asp-for="StateProvince" class="control-label">State/Province</label>
                 <input asp-for="StateProvince" class="form-control" />
                 <span asp-validation-for="StateProvince" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
+                <label asp-for="ZipCode" class="control-label">Zip:</label>
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
+                    Consent Form On File?
                     <input class="form-check-input" asp-for="ConsentFormOnFile" /> @Html.DisplayNameFor(model => model.ConsentFormOnFile)
                 </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
+                    Verbal Consent Given?
                     <input class="form-check-input" asp-for="VerbalConsentGiven" /> @Html.DisplayNameFor(model => model.VerbalConsentGiven)
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="ConsentFormSigned" class="control-label"></label>
+                <label asp-for="ConsentFormSigned" class="control-label">Consent Form Signed On: </label>
                 <input asp-for="ConsentFormSigned" class="form-control" />
                 <span asp-validation-for="ConsentFormSigned" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VerbalConsentGivenOn" class="control-label"></label>
+                <label asp-for="VerbalConsentGivenOn" class="control-label">Verbal Consent Given On: </label>
                 <input asp-for="VerbalConsentGivenOn" class="form-control" />
                 <span asp-validation-for="VerbalConsentGivenOn" class="text-danger"></span>
             </div>
@@ -75,5 +77,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

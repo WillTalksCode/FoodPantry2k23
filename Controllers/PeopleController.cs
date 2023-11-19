@@ -22,11 +22,19 @@ namespace FoodPantry2k23.Controllers
 
         // GET: People
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string FirstOrLastName = "")
         {
-              return _context.People != null ? 
-                          View(await _context.People.ToListAsync()) :
-                          Problem("Entity set 'FPContext.People'  is null.");
+            if (!string.IsNullOrWhiteSpace(FirstOrLastName))
+            {
+                return _context.People != null ?
+                            View(await _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.Contains(FirstOrLastName)) || (!string.IsNullOrEmpty(x.LastName) && x.LastName.Contains(FirstOrLastName))).ToListAsync()) : Problem("Entity set 'FPContext.People'  is null.");
+            }
+            else
+            {
+                return _context.People != null ?
+                            View(await _context.People.ToListAsync()) :
+                            Problem("Entity set 'FPContext.People'  is null.");
+            }
         }
 
         // GET: People/Details/5
@@ -159,7 +167,7 @@ namespace FoodPantry2k23.Controllers
             {
                 _context.People.Remove(person);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -167,7 +175,7 @@ namespace FoodPantry2k23.Controllers
         [Authorize]
         private bool PersonExists(int id)
         {
-          return (_context.People?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.People?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

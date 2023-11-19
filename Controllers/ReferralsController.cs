@@ -7,96 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FoodPantry2k23;
 using FoodPantry2k23.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FoodPantry2k23.Controllers
 {
-    public class HouseholdsController : Controller
+    public class ReferralsController : Controller
     {
         private readonly FPContext _context;
-        public HouseholdsController(FPContext context)
+
+        public ReferralsController(FPContext context)
         {
             _context = context;
         }
 
-        // GET: Households
-        [Authorize]
+        // GET: Referrals
         public async Task<IActionResult> Index()
         {
-              return _context.Households != null ? 
-                          View(await _context.Households.ToListAsync()) :
-                          Problem("Entity set 'FPContext.Households'  is null.");
+              return _context.Referrals != null ? 
+                          View(await _context.Referrals.ToListAsync()) :
+                          Problem("Entity set 'FPContext.Referrals'  is null.");
         }
 
-        // GET: Households/Details/5
-        [Authorize]
+        // GET: Referrals/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Households == null)
+            if (id == null || _context.Referrals == null)
             {
                 return NotFound();
             }
 
-            var household = await _context.Households
-                .FirstOrDefaultAsync(m => m.HouseHoldID == id);
-            if (household == null)
+            var referral = await _context.Referrals
+                .FirstOrDefaultAsync(m => m.ReferralID == id);
+            if (referral == null)
             {
                 return NotFound();
             }
-            household.HouseHoldMembers = await (from x in _context.People where x.HouseHoldID == id select x).ToListAsync();
-            return View(household);
+
+            return View(referral);
         }
 
-        // GET: Households/Create
-        [Authorize]
+        // GET: Referrals/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Households/Create
+        // POST: Referrals/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseHoldID,Address1,Address2,City,StateProvince,ZipCode,ConsentFormOnFile,VerbalConsentGiven,ConsentFormSigned,VerbalConsentGivenOn,AdminNotes")] Household household)
+        public async Task<IActionResult> Create([Bind("ReferralID,HouseHoldID,Service,ReferralDate")] Referral referral)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(household);
+                _context.Add(referral);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(household);
+            return View(referral);
         }
 
-        // GET: Households/Edit/5
-        [Authorize]
+        // GET: Referrals/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Households == null)
+            if (id == null || _context.Referrals == null)
             {
                 return NotFound();
             }
 
-            var household = await _context.Households.FindAsync(id);
-            if (household == null)
+            var referral = await _context.Referrals.FindAsync(id);
+            if (referral == null)
             {
                 return NotFound();
             }
-            return View(household);
+            return View(referral);
         }
 
-        // POST: Households/Edit/5
+        // POST: Referrals/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseHoldID,Address1,Address2,City,StateProvince,ZipCode,ConsentFormOnFile,VerbalConsentGiven,ConsentFormSigned,VerbalConsentGivenOn,AdminNotes")] Household household)
+        public async Task<IActionResult> Edit(int id, [Bind("ReferralID,HouseHoldID,Service,ReferralDate")] Referral referral)
         {
-            if (id != household.HouseHoldID)
+            if (id != referral.ReferralID)
             {
                 return NotFound();
             }
@@ -105,12 +99,12 @@ namespace FoodPantry2k23.Controllers
             {
                 try
                 {
-                    _context.Update(household);
+                    _context.Update(referral);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HouseholdExists(household.HouseHoldID))
+                    if (!ReferralExists(referral.ReferralID))
                     {
                         return NotFound();
                     }
@@ -121,52 +115,49 @@ namespace FoodPantry2k23.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(household);
+            return View(referral);
         }
 
-        // GET: Households/Delete/5
-        [Authorize]
+        // GET: Referrals/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Households == null)
+            if (id == null || _context.Referrals == null)
             {
                 return NotFound();
             }
 
-            var household = await _context.Households
-                .FirstOrDefaultAsync(m => m.HouseHoldID == id);
-            if (household == null)
+            var referral = await _context.Referrals
+                .FirstOrDefaultAsync(m => m.ReferralID == id);
+            if (referral == null)
             {
                 return NotFound();
             }
 
-            return View(household);
+            return View(referral);
         }
 
-        // POST: Households/Delete/5
+        // POST: Referrals/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Households == null)
+            if (_context.Referrals == null)
             {
-                return Problem("Entity set 'FPContext.Households'  is null.");
+                return Problem("Entity set 'FPContext.Referrals'  is null.");
             }
-            var household = await _context.Households.FindAsync(id);
-            if (household != null)
+            var referral = await _context.Referrals.FindAsync(id);
+            if (referral != null)
             {
-                _context.Households.Remove(household);
+                _context.Referrals.Remove(referral);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
-        private bool HouseholdExists(int id)
+        private bool ReferralExists(int id)
         {
-          return (_context.Households?.Any(e => e.HouseHoldID == id)).GetValueOrDefault();
+          return (_context.Referrals?.Any(e => e.ReferralID == id)).GetValueOrDefault();
         }
     }
 }

@@ -6,71 +6,116 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Household</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StateProvince)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StateProvince)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConsentFormOnFile)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConsentFormOnFile)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VerbalConsentGiven)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VerbalConsentGiven)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConsentFormSigned)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConsentFormSigned)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VerbalConsentGivenOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VerbalConsentGivenOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdminNotes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdminNotes)
-        </dd>
-    </dl>
+<container>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Household</h4>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Household Members</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address1)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address1)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address2)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address2)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.StateProvince)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StateProvince)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ZipCode)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ConsentFormOnFile)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ConsentFormOnFile)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.VerbalConsentGiven)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.VerbalConsentGiven)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ConsentFormSigned)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.ConsentFormSigned)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.VerbalConsentGivenOn)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.VerbalConsentGivenOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AdminNotes)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AdminNotes)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            <ul>
+                @foreach (Person person in Model.HouseHoldMembers)
+                {
+                    <partial name="_HouseHoldMembers.cshtml" model="person" />
+                }
+            </ul>
+        </div>
+    </div>
+</container>
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add a new household member
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a new member to the household</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Coming soon
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.HouseHoldID">Edit</a> |

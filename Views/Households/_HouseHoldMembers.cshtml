@@ -1,0 +1,32 @@
+﻿@model FoodPantry2k23.Models.Person
+
+
+<li>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 fw-bold">Name</div>
+            <div class="col-md-6">@Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.MiddleName) @Html.DisplayFor(modelItem => modelItem.LastName)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 fw-bold">@Html.DisplayNameFor(modelItem => modelItem.DOB)</div>
+            <div class="col-md-3">@Html.DisplayFor(modelItem => modelItem.DOB)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 fw-bold">@Html.DisplayNameFor(modelItem => modelItem.Gender)</div>
+            <div class="col-md-3">@Html.DisplayFor(modelItem => modelItem.Gender)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 fw-bold">@Html.DisplayNameFor(modelItem => modelItem.Email)</div>
+            <div class="col-md-3">@Html.DisplayFor(modelItem => modelItem.Email)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 fw-bold">@Html.DisplayNameFor(modelItem => modelItem.Phone)</div>
+            <div class="col-md-3">@Html.DisplayFor(modelItem => modelItem.Phone)</div>
+        </div>
+    </div>
+</li>
+
+
