@@ -23,9 +23,9 @@ namespace FoodPantry2k23.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-              return _context.Households != null ? 
-                          View(await _context.Households.ToListAsync()) :
-                          Problem("Entity set 'FPContext.Households'  is null.");
+            return _context.Households != null ?
+                        View(await _context.Households.ToListAsync()) :
+                        Problem("Entity set 'FPContext.Households'  is null.");
         }
 
         // GET: Households/Details/5
@@ -43,8 +43,47 @@ namespace FoodPantry2k23.Controllers
             {
                 return NotFound();
             }
+            ViewBag.People = _context.People.ToList();
             household.HouseHoldMembers = await (from x in _context.People where x.HouseHoldID == id select x).ToListAsync();
             return View(household);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddMemberToHousehold(int? HouseHoldId, int? PersonId)
+        {
+            if (HouseHoldId == null || _context.Households == null || PersonId == null)
+            {
+                return NotFound();
+            }
+
+            var household = await _context.Households.FindAsync(HouseHoldId);
+            var person = await _context.People.FindAsync(PersonId);
+            if (household == null || person == null)
+            {
+                return NotFound();
+            }
+            person.HouseHoldID = household.HouseHoldID;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(person);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!HouseholdExists(household.HouseHoldID) || !PersonExists(person.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(nameof(Details));
         }
 
         // GET: Households/Create
@@ -158,7 +197,7 @@ namespace FoodPantry2k23.Controllers
             {
                 _context.Households.Remove(household);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -166,7 +205,30 @@ namespace FoodPantry2k23.Controllers
         [Authorize]
         private bool HouseholdExists(int id)
         {
-          return (_context.Households?.Any(e => e.HouseHoldID == id)).GetValueOrDefault();
+            return (_context.Households?.Any(e => e.HouseHoldID == id)).GetValueOrDefault();
         }
+
+        [Authorize]
+        private bool PersonExists(int id)
+        {
+            return (_context.People?.Any(e => e.id == id)).GetValueOrDefault();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public PartialViewResult SearchPeople(string FirstOrLastName = "")
+        {
+            var isAjax = this.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (!string.IsNullOrWhiteSpace(FirstOrLastName) && isAjax)
+            {
+                return PartialView("_AddNewHouseHoldMemberModal", _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.Contains(FirstOrLastName)) ||
+                            (!string.IsNullOrEmpty(x.LastName) && x.LastName.Contains(FirstOrLastName))).ToList());
+            }
+            else
+            {
+                return PartialView("_AddNewHouseHoldMemberModal", _context.People.ToList());
+            }
+        }
+
     }
 }

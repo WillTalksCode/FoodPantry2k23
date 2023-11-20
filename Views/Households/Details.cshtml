@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var houseHoldUrl = @Url.Action("SearchPeople", "Household");
 }
 
 <h1>Details</h1>
@@ -98,7 +99,7 @@
     </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add a new member to the household</h5>
@@ -107,7 +108,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Coming soon
+                    <div class="row">
+                        <partial name="_AddNewHouseHoldMemberModal.cshtml" model="@ViewBag.People" />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

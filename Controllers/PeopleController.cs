@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FoodPantry2k23;
 using FoodPantry2k23.Models;
 using Microsoft.AspNetCore.Authorization;
+using Azure.Core;
 
 namespace FoodPantry2k23.Controllers
 {
@@ -22,17 +23,29 @@ namespace FoodPantry2k23.Controllers
 
         // GET: People
         [Authorize]
+        public async Task<IActionResult> Index()
+        {
+            return _context.People != null ?
+                        View(await _context.People.ToListAsync()) :
+                        Problem("Entity set 'FPContext.People'  is null.");
+        }
+
+        [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Index(string FirstOrLastName = "")
         {
-            if (!string.IsNullOrWhiteSpace(FirstOrLastName))
+            var isAjax = this.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (!string.IsNullOrWhiteSpace(FirstOrLastName) && isAjax)
             {
                 return _context.People != null ?
-                            View(await _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.Contains(FirstOrLastName)) || (!string.IsNullOrEmpty(x.LastName) && x.LastName.Contains(FirstOrLastName))).ToListAsync()) : Problem("Entity set 'FPContext.People'  is null.");
+                            PartialView("_PersonSearchResults", (await _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.Contains(FirstOrLastName)) ||
+                            (!string.IsNullOrEmpty(x.LastName) && x.LastName.Contains(FirstOrLastName))).ToListAsync()))
+                            : Problem("Entity set 'FPContext.People'  is null.");
             }
             else
             {
                 return _context.People != null ?
-                            View(await _context.People.ToListAsync()) :
+                            PartialView("_PersonSearchResults", await _context.People.ToListAsync()) :
                             Problem("Entity set 'FPContext.People'  is null.");
             }
         }

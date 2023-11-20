@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var peopleUrl = @Url.Action("Index", "People");
 }
 
 <h1>Index</h1>
@@ -9,12 +10,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-controller="People" asp-action="Index" method="get">
+<form asp-controller="People" asp-action="Index" method="post">
     <p>
-        Title: <input type="text" name="FirstOrLastName" />
-        <input type="submit" value="Filter" />
+        Title: <input type="text" id="FirstOrLastName" name="FirstOrLastName" />
     </p>
 </form>
+
 <table class="table">
     <thead>
         <tr>
@@ -45,39 +46,8 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MiddleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HouseHoldID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="peopleList">
+        <partial name="_PersonSearchResults.cshtml" model="Model" />
     </tbody>
 </table>
+
