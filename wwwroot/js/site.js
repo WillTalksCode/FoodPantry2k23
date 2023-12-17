@@ -22,23 +22,16 @@ $('input[name=FirstOrLastName]').keyup(function () {
 
 });
 
+function delay(fn, ms) {
+    let timer = 0
+    return function (...args) {
+        clearTimeout(timer)
+        timer = setTimeout(fn.bind(this, ...args), ms || 0)
+    }
+}
 
-/*$('input[name=SearchName]').keyup(function () {
-    var SearchString = $("#SearchName").val();
-    $.ajax({
-        dataType: "Html",
-        type: "POST",
-        url: $(this).data('houseHoldUrl'),
-        data: { SearchName: SearchString },
-        success: function (a) {
-            // Replace the div's content with the page method's return.
-            //alert("success");
-            $('#peopleSearchResults').html(a);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(errorThrown)
-        }
-    });
 
-}); */
+
+
+
 

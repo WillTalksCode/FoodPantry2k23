@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
-    var houseHoldUrl = @Url.Action("SearchPeople", "Household");
+    var houseHoldUrl = @Url.Action("SearchPeopleForHousehold", "Households");
+    var SearchResults = ViewBag.SearchResults;
 }
 
 <h1>Details</h1>
@@ -94,27 +95,24 @@
     </div>
 </container>
 <div class="container">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary" onclick="openModalForFamilyMember()">
         Add a new household member
     </button>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+    <div class="container">
+    </div>
+    <div class="modal" id="householdModal" tabindex="-1" role="dialog" aria-labelledby="householdModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add a new member to the household</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="householdModalLabel">Add a new member to the household</h5>
+                    <button type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <partial name="_AddNewHouseHoldMemberModal.cshtml" model="@ViewBag.People" />
-                    </div>
+                <div class="modal-body" id="modalBody">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModalForFamilyMember()" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -124,3 +122,45 @@
     <a asp-action="Edit" asp-route-id="@Model?.HouseHoldID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts{
+    <script>
+        function openModalForFamilyMember() {
+            var name = '';
+            $.ajax({
+                url: '/Households/SearchPeopleForHousehold',
+                type: 'GET',
+                data: { SearchName: name },
+                success: function (data) {
+                    $('#modalBody').html(data);
+                    $('#householdModal').modal('show');
+                },
+                error: function () {
+                    alert('Error occurred while fetching data.');
+                }
+            });
+        };
+
+        function closeModalForFamilyMember() {
+            $('#householdModal').modal('hide');
+        }
+
+        function searchFamilyMembers() {
+            var name = $("#SearchName").val();
+            $.ajax({
+                url: '/Households/SearchPeopleForHousehold',
+                type: 'GET',
+                data: { SearchName: name },
+                success: function (data) {
+                    $('#modalBody').html(data);
+                    $('#householdModal').modal('show');
+                },
+                error: function () {
+                    alert('Error occurred while fetching data.');
+                }
+            });
+        };
+
+
+    </script>
+}

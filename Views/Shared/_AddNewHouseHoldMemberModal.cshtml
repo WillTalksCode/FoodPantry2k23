@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Person>
+
+
+<table class="table">
+    <tr class="row">
+        <td class="col-sm 6">
+            <form asp-controller="HouseHolds" asp-action="Details" method="post">
+                <p>
+                    Title: <input type="text" id="SearchName" name="SearchName" />
+                </p>
+            </form>
+        </td>
+    </tr>
+    <tr class="row">
+        <th class="col-sm-3 fw-bold">Name</th>
+        <th class="col-sm-3 fw-bold">Date of Birth</th>
+        <th class="col-sm-2 fw-bold">Gender</th>
+        <th class="col-sm-2 fw-bold">Email</th>
+        <th class="col-sm-2 fw-bold">Phone</th>
+    </tr>
+
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <tr class="row">
+                <td class="col-sm-3">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.MiddleName) @Html.DisplayFor(modelItem => item.LastName)</td>
+                <td class="col-sm-3">@Html.DisplayFor(modelItem => item.DOB)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.Email)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.Phone)</td>
+            </tr>
+        }       }
+
+</table>
+
+<script>
+    $('input[name=SearchName]').keyup(delay(function () {
+        var name = $("#SearchName").val();
+        $.ajax({
+            url: '/Households/SearchPeopleForHousehold',
+            type: 'GET',
+            data: { SearchName: name },
+            success: function (data) {
+                $('#modalBody').html(data);
+            },
+            error: function () {
+                alert('Error occurred while fetching data.');
+            }
+        });
+
+    }, 500));
+</script>

@@ -72,10 +72,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG91c2Vob2xkc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Households/_AddNewHouseHoldMemberModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG91c2Vob2xkc1xfQWRkTmV3SG91c2VIb2xkTWVtYmVyTW9kYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Households/_HouseHoldMembers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG91c2Vob2xkc1xfSG91c2VIb2xkTWVtYmVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -126,6 +122,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Shared/_AddNewHouseHoldMemberModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZGROZXdIb3VzZUhvbGRNZW1iZXJNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Shared/_AddPersonToHouseHoldModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZGRQZXJzb25Ub0hvdXNlSG9sZE1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/screw/Documents/GitHub/FoodPantry2k23/FoodPantry2k23/Views/Shared/_LoginPartial.cshtml]

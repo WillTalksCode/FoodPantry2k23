@@ -90,5 +90,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "Households",
     pattern: "{controller=Households}/{action=Index}").RequireAuthorization();
+
 app.MapRazorPages();
 app.Run();

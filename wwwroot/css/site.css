@@ -24,3 +24,9 @@ body {
 .modal-body {
     word-break: break-all;
 }
+
+@media (min-width: 1200px) {
+    .modal-xlg {
+        width: 90%;
+    }
+}

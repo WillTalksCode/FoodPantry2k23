@@ -43,7 +43,7 @@ namespace FoodPantry2k23.Controllers
             {
                 return NotFound();
             }
-            ViewBag.People = _context.People.ToList();
+            
             household.HouseHoldMembers = await (from x in _context.People where x.HouseHoldID == id select x).ToListAsync();
             return View(household);
         }
@@ -215,20 +215,32 @@ namespace FoodPantry2k23.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public PartialViewResult SearchPeople(string FirstOrLastName = "")
+        public PartialViewResult SearchPeopleForHousehold(string SearchName = "")
         {
+            List<Person> SearchResults = new List<Person>();
             var isAjax = this.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-            if (!string.IsNullOrWhiteSpace(FirstOrLastName) && isAjax)
+            if (!string.IsNullOrWhiteSpace(SearchName) && isAjax)
             {
-                return PartialView("_AddNewHouseHoldMemberModal", _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.Contains(FirstOrLastName)) ||
-                            (!string.IsNullOrEmpty(x.LastName) && x.LastName.Contains(FirstOrLastName))).ToList());
+                SearchResults = _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.StartsWith(SearchName)) || (!string.IsNullOrEmpty(x.LastName) && x.LastName.StartsWith(SearchName))).ToList<Person>();
             }
             else
             {
-                return PartialView("_AddNewHouseHoldMemberModal", _context.People.ToList());
+                SearchResults = _context.People.Take(10).ToList<Person>();
             }
+            return PartialView("_AddNewHouseHoldMemberModal", SearchResults);
         }
+
+        [HttpPost]
+        public List<Person> GetSearchResults(string SearchName = "")
+        {
+            if (!string.IsNullOrWhiteSpace(SearchName))
+            {
+                return _context.People.Where(x => (!string.IsNullOrEmpty(x.FirstName) && x.FirstName.StartsWith(SearchName)) || (!string.IsNullOrEmpty(x.LastName) && x.LastName.StartsWith(SearchName))).ToList<Person>();
+            }
+            else
+                return _context.People.ToList<Person>();
+        }
+
 
     }
 }
